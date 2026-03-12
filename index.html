@@ -7,75 +7,20 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; /* bodyのデフォルトマージンをリセット */
+            margin: 20px;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
             line-height: 1.6;
-            display: flex; /* main-layoutを中央に配置するため */
-            justify-content: center; /* main-layoutを水平中央に */
-            align-items: flex-start; /* main-layoutを上部に揃える */
-            min-height: 100vh; /* 画面全体を使うようにする */
-            padding-top: 20px; /* 全体の上部に余白 */
-            padding-bottom: 40px; /* 全体の下部に余白 */
-            box-sizing: border-box; /* paddingがwidthに含まれるように */
         }
-
-        /* 新しいレイアウトのためのスタイル */
-        .main-layout {
-            display: flex; /* Flexboxを有効にする */
-            max-width: 1200px; /* レイアウト全体の最大幅 */
-            width: 90%; /* 画面幅に応じて調整 */
-            gap: 30px; /* コンテンツと画像の間のスペース */
-            flex-wrap: wrap; /* 画面が狭いときに折り返す */
-            align-items: flex-start; /* アイテムを上部揃えにする */
-        }
-
-        .content-area {
-            flex: 2; /* 利用可能なスペースの2/3を占める */
-            min-width: 400px; /* 最小幅を設定し、これ以下で折り返す */
-        }
-
         .container {
-            /* 以前の.containerのスタイルを調整 */
-            max-width: none; /* flexboxで幅を制御するため */
-            margin: 0; /* flexboxでマージンを制御するため */
-            padding: 30px;
+            max-width: 800px;
+            margin: 20px auto;
             background-color: #fff;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        .sidebar-image {
-            flex: 1; /* 利用可能なスペースの1/3を占める */
-            text-align: center; /* 画像を中央寄せ */
-            padding: 20px;
-            background-color: #e9f7ff; /* ここを薄い青に変更 */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky; /* スクロールしても画像が画面内にとどまるようにする */
-            top: 20px; /* 画面上部から20pxの位置で固定 */
-        }
-
-        /* サイドバー内の個々の画像とキャプションのスタイル */
-        .image-item {
-            margin-bottom: 20px; /* 各画像ブロックの下に余白 */
-        }
-
-        .exhibition-image {
-            max-width: 100%; /* 親要素の幅に合わせて画像を縮小 */
-            height: auto; /* アスペクト比を維持 */
-            border-radius: 5px; /* 画像の角を少し丸くする（任意） */
-            border: 1px solid #ccc; /* 画像に薄い枠線（任意） */
-        }
-
-        .image-caption {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 10px;
-            text-align: center;
-        }
-
         h1 {
             color: #0056b3;
             text-align: center;
@@ -96,7 +41,7 @@
         }
         p {
             margin-bottom: 8px;
-            margin-left: 15px;
+            /* li内のコンテンツに Flexbox を使うため、このインデントは後で調整 */
         }
         ul {
             list-style-type: none;
@@ -105,10 +50,49 @@
         ul li {
             background-color: #e9f7ff;
             margin-bottom: 20px;
-            padding: 15px 20px;
+            padding: 15px 20px; /* li自体にパディング */
             border-radius: 5px;
             border-left: 3px solid #007bff;
+
+            /* ここからFlexboxで横並びにするスタイル */
+            display: flex;
+            align-items: flex-start; /* 上揃え */
+            gap: 20px; /* テキストと画像の間隔 */
+            flex-wrap: wrap; /* 画面が狭いときに折り返す */
         }
+
+        /* <li>内のテキストコンテンツ */
+        .exhibition-text-content {
+            flex: 1; /* 利用可能なスペースを占有 */
+            min-width: 300px; /* 最小幅を設定し、これ以下で折り返す */
+        }
+        .exhibition-text-content p {
+            margin-left: 15px; /* ここでテキストのインデントを調整 */
+        }
+
+        /* <li>内の画像コンテンツ */
+        .exhibition-media {
+            /* 画像部分の幅を固定または最大値を指定 */
+            flex: 0 0 250px; /* 縮小せず、250pxの幅を確保 (適宜調整ください) */
+            max-width: 100%; /* 親要素(li)の幅を超えることはない */
+            text-align: center;
+            order: 2; /* デフォルトでテキストコンテンツの後に配置 */
+        }
+
+        .exhibition-image-in-list {
+            max-width: 100%; /* 親要素(exhibition-media)の幅に合わせて縮小 */
+            height: auto; /* アスペクト比を維持 */
+            display: block; /* 余分な下マージンをなくすため */
+            margin-bottom: 5px; /* キャプションとの間に少し余白 */
+            border-radius: 5px; /* 角を丸くする（任意） */
+            border: 1px solid #ccc; /* 枠線（任意） */
+        }
+        .image-caption-in-list {
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+        }
+
         strong {
             color: #333;
         }
@@ -128,79 +112,78 @@
             text-align: center;
         }
 
-        /* レスポンシブデザイン：画面幅が768px以下の場合 */
-        @media (max-width: 768px) {
-            .main-layout {
-                flex-direction: column; /* アイテムを縦に並べる */
-                gap: 20px; /* アイテム間のスペースを調整 */
+        /* レスポンシブデザイン：画面幅が狭い場合 */
+        @media (max-width: 768px) { /* スマートフォンやタブレット向け */
+            ul li {
+                flex-direction: column; /* 縦並びにする */
+                align-items: center; /* コンテンツを中央寄せ */
             }
-            .content-area, .sidebar-image {
-                flex: none; /* flexの比率指定を解除 */
-                width: 100%; /* 幅を100%にする */
+            .exhibition-text-content,
+            .exhibition-media {
+                flex: none; /* Flexの比率を解除 */
+                width: 100%; /* 幅を100%に */
                 min-width: unset; /* 最小幅の指定を解除 */
+                order: unset; /* orderもリセット */
             }
-            .sidebar-image {
-                position: static; /* スクロール固定を解除 */
-                order: -1; /* コンテンツの上に画像を配置（任意） */
-                padding: 15px;
+            .exhibition-media {
+                order: -1; /* モバイルでは画像をテキストの上に配置 */
+                margin-bottom: 15px; /* テキストとの間に余白 */
             }
-            body {
-                padding-top: 15px;
-                padding-bottom: 20px;
+            .exhibition-text-content h3 {
+                text-align: center; /* モバイルでは見出しも中央寄せ */
+            }
+            .exhibition-text-content p {
+                margin-left: 0; /* モバイルではインデントを解除 */
             }
         }
     </style>
 </head>
 <body>
-    <div class="main-layout">
-        <div class="content-area">
-            <div class="container">
-                <h1>徳武産業株式会社 最新展示会出展情報</h1>
+    <div class="container">
+        <h1>徳武産業株式会社 最新展示会出展情報</h1>
 
-                <h2>出展予定の展示会</h2>
-                <ul>
-                    <li>
-                        <h3>展示会名: 介援隊福祉用具展示会</h3>
-                        <p><strong>開催日時:</strong> 2026年4月2日(木) 10:00～16:00</p>
-                        <p><strong>会場:</strong> コンベックス岡山 中展示場</p>
-                        <p><strong>住所:</strong> 〒701-0165 岡山県岡山市北区大内田６７５</p>
-                        <p><strong>電話:</strong> 086-292-6111</p>
-                        <p><strong>アクセス:</strong> <a href="http://www.convex-okayama.co.jp/access/" target="_blank">コンベックス岡山 アクセス情報</a></p>
-                        <!-- 必要であれば、出展内容などの詳細をここに追加できます -->
-                        <!-- <p><strong>出展内容:</strong> 〇〇製品をご紹介します。</p> -->
-                    </li>
-                    <li>
-                        <h3>展示会名: 介援隊展示会inふくしま</h3>
-                        <p><strong>開催日時:</strong> 2026年4月22日(水)</p>
-                        <p><strong>会場:</strong> ビッグパレットふくしま 多目的Bホール 1階</p>
-                        <p><strong>住所:</strong> 福島県郡山市南２丁目５２−５２ ビッグパレットふくしま</p>
-                        <p><strong>電話:</strong> 024-947-8010</p>
-                        <p><strong>アクセス:</strong> <a href="https://share.google/IHrltx1mHixLmxJj7" target="_blank">ビッグパレットふくしま アクセス情報</a></p>
-                        <!-- 必要であれば、出展内容などの詳細をここに追加できます -->
-                        <!-- <p><strong>出展内容:</strong> 〇〇製品をご紹介します。</p> -->
-                    </li>
-                </ul>
+        <h2>出展予定の展示会</h2>
+        <ul>
+            <li>
+                <div class="exhibition-text-content">
+                    <h3>展示会名: 介援隊福祉用具展示会</h3>
+                    <p><strong>開催日時:</strong> 2026年4月2日(木) 10:00～16:00</p>
+                    <p><strong>会場:</strong> コンベックス岡山 中展示場</p>
+                    <p><strong>住所:</strong> 〒701-0165 岡山県岡山市北区大内田６７５</p>
+                    <p><strong>電話:</strong> 086-292-6111</p>
+                    <p><strong>アクセス:</strong> <a href="http://www.convex-okayama.co.jp/access/" target="_blank">コンベックス岡山 アクセス情報</a></p>
+                    <!-- 必要であれば、出展内容などの詳細をここに追加できます -->
+                    <!-- <p><strong>出展内容:</strong> 〇〇製品をご紹介します。</p> -->
+                </div>
+                <div class="exhibition-media">
+                    <!-- 介援隊福祉用具展示会のイメージ画像 -->
+                    <img src="exhibition_okayama.jpg" alt="介援隊福祉用具展示会 岡山会場" class="exhibition-image-in-list">
+                    <p class="image-caption-in-list">介援隊福祉用具展示会 岡山</p>
+                </div>
+            </li>
+            <li>
+                <div class="exhibition-text-content">
+                    <h3>展示会名: 介援隊展示会inふくしま</h3>
+                    <p><strong>開催日時:</strong> 2026年4月22日(水)</p>
+                    <p><strong>会場:</strong> ビッグパレットふくしま 多目的Bホール 1階</p>
+                    <p><strong>住所:</strong> 福島県郡山市南２丁目５２−５２ ビッグパレットふくしま</p>
+                    <p><strong>電話:</strong> 024-947-8010</p>
+                    <p><strong>アクセス:</strong> <a href="https://share.google/IHrltx1mHixLmxJj7" target="_blank">ビッグパレットふくしま アクセス情報</a></p>
+                    <!-- 必要であれば、出展内容などの詳細をここに追加できます -->
+                    <!-- <p><strong>出展内容:</strong> 〇〇製品をご紹介します。</p> -->
+                </div>
+                <div class="exhibition-media">
+                    <!-- 介援隊展示会inふくしまのイメージ画像 -->
+                    <img src="exhibition_fukushima.jpg" alt="介援隊展示会inふくしま 会場" class="exhibition-image-in-list">
+                    <p class="image-caption-in-list">介援隊展示会inふくしま</p>
+                </div>
+            </li>
+        </ul>
 
-                <p class="note">
-                    ご不明な点がございましたら、お気軽にお問い合わせください。<br>
-                    お問い合わせ先：<a href="mailto:info@tokutake.co.jp">info@tokutake.co.jp</a> (貴社の正式なメールアドレスに置き換えてください。)
-                </p>
-            </div>
-        </div>
-
-        <div class="sidebar-image">
-            <h2>イメージギャラリー</h2>
-            <div class="image-item">
-                <img src="exhibition_okayama.jpg" alt="介援隊福祉用具展示会 岡山会場" class="exhibition-image">
-                <p class="image-caption">介援隊福祉用具展示会 岡山</p>
-            </div>
-            <div class="image-item">
-                <img src="exhibition_fukushima.jpg" alt="介援隊展示会inふくしま 会場" class="exhibition-image">
-                <p class="image-caption">介援隊展示会inふくしま</p>
-            </div>
-            <!-- 必要に応じて、上記のように<div class="image-item">〜</div>のブロックを追加し、
-                 画像ファイル名とalt属性、キャプションを適切なものに修正してください。 -->
-        </div>
+        <p class="note">
+            ご不明な点がございましたら、お気軽にお問い合わせください。<br>
+            お問い合わせ先：<a href="mailto:info@tokutake.co.jp">info@tokutake.co.jp</a> (貴社の正式なメールアドレスに置き換えてください。)
+        </p>
     </div>
 </body>
 </html>
