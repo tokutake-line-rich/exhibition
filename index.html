@@ -39,6 +39,14 @@
             margin-top: 15px;
             margin-bottom: 10px;
         }
+        /* h3内のaタグのスタイル */
+        h3 a {
+            color: inherit; /* 親要素のh3の色を継承 */
+            text-decoration: none; /* デフォルトの下線をなくす */
+        }
+        h3 a:hover {
+            text-decoration: underline; /* ホバー時に下線を表示 */
+        }
         p {
             margin-bottom: 8px;
         }
@@ -146,7 +154,12 @@
         <ul>
             <li>
                 <div class="exhibition-text-content">
-                    <h3>展示会名: 介援隊福祉用具展示会inおかやま</h3>
+                    <h3>
+                        <!-- ここにリンクを追加しました -->
+                        <a href="https://www.convex-okayama.co.jp/event/971" target="_blank">
+                            介援隊福祉用具展示会inおかやま
+                        </a>
+                    </h3>
                     <p><strong>開催日時:</strong> 2026年4月2日(木) 10:00～16:00</p>
                     <p><strong>会場:</strong> コンベックス岡山 中展示場</p>
                     <p><strong>住所:</strong> 〒701-0165 岡山県岡山市北区大内田６７５</p>
@@ -154,7 +167,6 @@
                     <p><strong>アクセス:</strong> <a href="http://www.convex-okayama.co.jp/access/" target="_blank">コンベックス岡山 アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <!-- 岡山の画像にリンクを設定 -->
                     <a href="https://www.convex-okayama.co.jp/event/971" target="_blank">
                         <img src="exhibition_okayama.jpg" alt="介援隊福祉用具展示会 岡山会場" class="exhibition-image-in-list">
                     </a>
@@ -170,7 +182,6 @@
                     <p><strong>アクセス:</strong> <a href="https://share.google/IHrltx1mHixLmxJj7" target="_blank">ビッグパレットふくしま アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <!-- 福島の画像にリンクを設定 (ダミーリンクです。適切なURLに置き換えてください) -->
                     <a href="https://example.com/fukushima-event-details" target="_blank">
                         <img src="exhibition_fukushima.jpg" alt="介援隊展示会inふくしま 会場" class="exhibition-image-in-list">
                     </a>
@@ -183,10 +194,9 @@
                     <p><strong>会場:</strong> OMM展示ホール</p>
                     <p><strong>住所:</strong> 大阪府大阪市中央区大手前1－7－31　2階B,Cホール</p>
                     <p><strong>電話:</strong> 06-6943-2020</p>
-                    <p><strong>アクセス:</strong> <a href="https://www.omm.co.jp/" target="_blank">OMM展示ホール アクセス情報</a></p>
+                    <p><strong>アクセス:</strong> <a href="https://www.omm.co.jp/access/" target="_blank">OMM展示ホール アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <!-- 大阪の画像にリンクを設定 (OMM展示ホール公式サイトへのリンクにしました) -->
                     <a href="https://www.omm.co.jp/" target="_blank">
                         <img src="exhibition_osaka.jpg" alt="介援隊展示会in大阪 会場" class="exhibition-image-in-list">
                     </a>
