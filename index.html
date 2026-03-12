@@ -55,7 +55,7 @@
 
             /* Flexboxで横並び、垂直中央揃え */
             display: flex;
-            align-items: center; /* ここを変更しました */
+            align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -84,6 +84,14 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
+        /* 画像がリンクの場合、クリックしたことがわかるようにカーソルを変更 */
+        .exhibition-media a {
+            cursor: pointer;
+            display: block; /* <a>タグがブロック要素になり、画像全体がクリック可能に */
+            line-height: 0; /* <a>タグの下に余計なスペースができないように */
+        }
+
 
         strong {
             color: #333;
@@ -146,7 +154,10 @@
                     <p><strong>アクセス:</strong> <a href="http://www.convex-okayama.co.jp/access/" target="_blank">コンベックス岡山 アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <img src="exhibition_okayama.jpg" alt="介援隊福祉用具展示会 岡山会場" class="exhibition-image-in-list">
+                    <!-- 岡山の画像にリンクを設定 -->
+                    <a href="https://www.convex-okayama.co.jp/event/971" target="_blank">
+                        <img src="exhibition_okayama.jpg" alt="介援隊福祉用具展示会 岡山会場" class="exhibition-image-in-list">
+                    </a>
                 </div>
             </li>
             <li>
@@ -159,10 +170,12 @@
                     <p><strong>アクセス:</strong> <a href="https://share.google/IHrltx1mHixLmxJj7" target="_blank">ビッグパレットふくしま アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <img src="exhibition_fukushima.jpg" alt="介援隊展示会inふくしま 会場" class="exhibition-image-in-list">
+                    <!-- 福島の画像にリンクを設定 (ダミーリンクです。適切なURLに置き換えてください) -->
+                    <a href="https://example.com/fukushima-event-details" target="_blank">
+                        <img src="exhibition_fukushima.jpg" alt="介援隊展示会inふくしま 会場" class="exhibition-image-in-list">
+                    </a>
                 </div>
             </li>
-            <!-- 新しく追加したい展示会情報はここに<li>要素として追加します -->
             <li>
                 <div class="exhibition-text-content">
                     <h3>展示会名: 介援隊福祉用具展示会 in大阪</h3>
@@ -173,7 +186,10 @@
                     <p><strong>アクセス:</strong> <a href="https://www.omm.co.jp/" target="_blank">OMM展示ホール アクセス情報</a></p>
                 </div>
                 <div class="exhibition-media">
-                    <img src="exhibition_osaka.jpg" alt="介援隊展示会in大阪 会場" class="exhibition-image-in-list">
+                    <!-- 大阪の画像にリンクを設定 (OMM展示ホール公式サイトへのリンクにしました) -->
+                    <a href="https://www.omm.co.jp/" target="_blank">
+                        <img src="exhibition_osaka.jpg" alt="介援隊展示会in大阪 会場" class="exhibition-image-in-list">
+                    </a>
                 </div>
             </li>
         </ul>
