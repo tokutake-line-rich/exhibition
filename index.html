@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>徳武産業株式会社 展示会出展情報</title>
+    <!-- ファビコン設定 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,23 +31,23 @@
             padding-bottom: 15px;
         }
         h2 {
-            color: #007bff; /* h2の色はそのまま */
+            color: #007bff;
             margin-top: 25px;
             margin-bottom: 20px;
         }
         h3 {
-            color: #333; /* h3自体の色は維持（黒っぽい） */
+            color: #333;
             margin-top: 15px;
             margin-bottom: 10px;
         }
-        /* h3内のaタグのスタイル - ここを主に変更しました */
+        /* h3内のaタグのスタイル */
         h3 a {
-            color: #0056b3; /* h2とは異なる、少し濃いめの青 */
-            text-decoration: underline; /* 常に下線を表示 */
+            color: #0056b3;
+            text-decoration: underline;
         }
         h3 a:hover {
-            color: #007bff; /* ホバー時にh2と同じ水色に近い青に変化 */
-            text-decoration: underline; /* ホバー時も下線を表示 */
+            color: #007bff;
+            text-decoration: underline;
         }
         p {
             margin-bottom: 8px;
@@ -61,14 +63,12 @@
             border-radius: 5px;
             border-left: 3px solid #007bff;
 
-            /* Flexboxで横並び、垂直中央揃え */
             display: flex;
             align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
 
-        /* <li>内のテキストコンテンツ */
         .exhibition-text-content {
             flex: 1;
             min-width: 300px;
@@ -77,9 +77,8 @@
             margin-left: 15px;
         }
 
-        /* <li>内の画像コンテンツ */
         .exhibition-media {
-            flex: 0 0 250px; /* 画像部分の幅を約250pxに固定 (適宜調整ください) */
+            flex: 0 0 250px;
             max-width: 100%;
             text-align: center;
             order: 2;
@@ -93,7 +92,6 @@
             border: 1px solid #ccc;
         }
 
-        /* 画像がリンクの場合、クリックしたことがわかるようにカーソルを変更 */
         .exhibition-media a {
             cursor: pointer;
             display: block;
@@ -120,7 +118,6 @@
             text-align: center;
         }
 
-        /* レスポンシブデザイン：画面幅が狭い場合 */
         @media (max-width: 768px) {
             ul li {
                 flex-direction: column;
