@@ -29,23 +29,23 @@
             padding-bottom: 15px;
         }
         h2 {
-            color: #007bff;
+            color: #007bff; /* h2の色はそのまま */
             margin-top: 25px;
-            border-left: 5px solid #007bff;
-            padding-left: 10px;
+            margin-bottom: 20px;
         }
         h3 {
-            color: #333;
+            color: #333; /* h3自体の色は維持（黒っぽい） */
             margin-top: 15px;
             margin-bottom: 10px;
         }
-        /* h3内のaタグのスタイル */
+        /* h3内のaタグのスタイル - ここを主に変更しました */
         h3 a {
-            color: inherit; /* 親要素のh3の色を継承 */
-            text-decoration: none; /* デフォルトの下線をなくす */
+            color: #0056b3; /* h2とは異なる、少し濃いめの青 */
+            text-decoration: underline; /* 常に下線を表示 */
         }
         h3 a:hover {
-            text-decoration: underline; /* ホバー時に下線を表示 */
+            color: #007bff; /* ホバー時にh2と同じ水色に近い青に変化 */
+            text-decoration: underline; /* ホバー時も下線を表示 */
         }
         p {
             margin-bottom: 8px;
@@ -96,8 +96,8 @@
         /* 画像がリンクの場合、クリックしたことがわかるようにカーソルを変更 */
         .exhibition-media a {
             cursor: pointer;
-            display: block; /* <a>タグがブロック要素になり、画像全体がクリック可能に */
-            line-height: 0; /* <a>タグの下に余計なスペースができないように */
+            display: block;
+            line-height: 0;
         }
 
 
